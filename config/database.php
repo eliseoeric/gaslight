@@ -1,6 +1,5 @@
 <?php
-// read credentials from secrets.json
-$creds = json_decode(file_get_contents($_SERVER['APP_SECRETS']), true);
+$secrets = json_decode(file_get_contents($_SERVER['APP_SECRETS']), true);
 return [
 
     /*
@@ -55,13 +54,28 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', $creds['MYSQL']['HOST']),
-            'database'  => env('DB_DATABASE', $creds['MYSQL']['DATABASE']),
-            'username'  => env('DB_USERNAME', $creds['MYSQL']['USER']),
-            'password'  => env('DB_PASSWORD', $creds['MYSQL']['PASSWORD']),
-            // …
+            'host'      => $secrets['MYSQL']['HOST'],
+            'port'      => $secrets['MYSQL']['PORT'],
+            'database'  => $secrets['MYSQL']['DATABASE'],
+            'username'  => $secrets['MYSQL']['USER'],
+            'password'  => $secrets['MYSQL']['PASSWORD'],
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
         ],
-
+        'mysql-tunnel' => [
+            'driver'    => 'mysql',
+            'host'      => '127.0.0.1',
+            'port'      => '13306',
+            'database'  => 'gaslight',
+            'username'  => 'gaslight',
+            'password'  => 'jPaNeqZejIAOlXcRXRXTTLvl',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
