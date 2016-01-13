@@ -38,4 +38,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/cards', 'CardController@index' );
     Route::post('/card', 'CardController@store' );
     Route::delete('/card/{card}', 'CardController@destroy' );
+
+    Route::resource('tag', 'TagController' );
+//    Route::get('/tags', 'TagController@index' );
+//    Route::post('/tag', 'TagController@store' );
+//    Route::delete('/tag/{tag}', 'TagController@destroy' );
 });

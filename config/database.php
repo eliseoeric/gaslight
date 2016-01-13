@@ -1,5 +1,6 @@
 <?php
-$secrets = json_decode(file_get_contents($_SERVER['APP_SECRETS']), true);
+//$secrets = json_decode(file_get_contents($_SERVER['APP_SECRETS']), true);
+
 return [
 
     /*
@@ -43,7 +44,6 @@ return [
     | choice installed on your machine before you begin development.
     |
     */
-
     'connections' => [
 
         'sqlite' => [
@@ -51,31 +51,43 @@ return [
             'database' => database_path('database.sqlite'),
             'prefix'   => '',
         ],
-
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => $secrets['MYSQL']['HOST'],
-            'port'      => $secrets['MYSQL']['PORT'],
-            'database'  => $secrets['MYSQL']['DATABASE'],
-            'username'  => $secrets['MYSQL']['USER'],
-            'password'  => $secrets['MYSQL']['PASSWORD'],
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => env('DB_DATABASE', 'forge'),
+            'username'  => env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', ''),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
             'strict'    => false,
         ],
-        'mysql-tunnel' => [
-            'driver'    => 'mysql',
-            'host'      => '127.0.0.1',
-            'port'      => '13306',
-            'database'  => 'gaslight',
-            'username'  => 'gaslight',
-            'password'  => 'jPaNeqZejIAOlXcRXRXTTLvl',
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
-            'prefix'    => '',
-            'strict'    => false,
-        ],
+
+
+//        'mysql' => [
+//            'driver'    => 'mysql',
+//            'host'      => env( 'DB_HOST', $secrets['MYSQL']['HOST'] ),
+//            'port'      => env( 'DB_PORT', $secrets['MYSQL']['PORT'] ),
+//            'database'  => env( 'DB_DATABASE', $secrets['MYSQL']['DATABASE'] ),
+//            'username'  => env( 'DB_USERNAME', $secrets['MYSQL']['USER'] ),
+//            'password'  => env( 'DB_PASSWORD', $secrets['MYSQL']['PASSWORD'] ),
+//            'charset'   => 'utf8',
+//            'collation' => 'utf8_unicode_ci',
+//            'prefix'    => '',
+//            'strict'    => false,
+//        ],
+//        'mysql-tunnel' => [
+//            'driver'    => 'mysql',
+//            'host'      => '127.0.0.1',
+//            'port'      => '13306',
+//            'database'  => 'gaslight',
+//            'username'  => 'gaslight',
+//            'password'  => 'jPaNeqZejIAOlXcRXRXTTLvl',
+//            'charset'   => 'utf8',
+//            'collation' => 'utf8_unicode_ci',
+//            'prefix'    => '',
+//            'strict'    => false,
+//        ],
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),
