@@ -35,11 +35,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', function() {
         return view('home');
     });
-    Route::get('/cards', 'CardController@index' );
-    Route::post('/card', 'CardController@store' );
-    Route::delete('/card/{card}', 'CardController@destroy' );
+    Route::resource('cards', 'CardController');
+//    Route::get('/cards', 'CardController@index' );
+//    Route::post('/card', 'CardController@store' );
+//    Route::delete('/card/{card}', 'CardController@destroy' );
+    Route::resource('tags', 'TagController' );
 
-    Route::resource('tag', 'TagController' );
 //    Route::get('/tags', 'TagController@index' );
 //    Route::post('/tag', 'TagController@store' );
 //    Route::delete('/tag/{tag}', 'TagController@destroy' );

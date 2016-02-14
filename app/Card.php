@@ -8,7 +8,7 @@ class Card extends Model
 {
     //
 
-	protected $fillable = ['title', 'url'];
+	protected $fillable = ['title', 'url', 'og_image', 'desc'];
 
 	/**
 	 * Get the user that owns the card
@@ -19,7 +19,18 @@ class Card extends Model
 		return $this->belongsTo( User::class );
 	}
 
-	public function tags() {
+	public function tag( $tag )
+	{
+		$this->tags()->save($tag);
+	}
+
+	public function tags()
+	{
 		return $this->belongsToMany( Tag::class );
+	}
+
+	public function countTags()
+	{
+		return $this->tags()->count();
 	}
 }

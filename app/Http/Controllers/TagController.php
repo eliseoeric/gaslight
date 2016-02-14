@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\TagRepository;
+use App\Tag;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -22,9 +23,13 @@ class TagController extends Controller
     public function index( Request $request )
     {
         $tags = Tag::all();
-        return view( 'tags.index', [
-            'tags' => $tags,
-        ]);
+        foreach( $tags as $key => $value )
+        {
+            $list[$key]['id'] = $value->id;
+            $list[$key]['text'] = $value->name;
+        }
+
+        return $list;
     }
 
     /**

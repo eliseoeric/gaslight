@@ -62,6 +62,17 @@ return [
             'prefix'    => '',
             'strict'    => false,
         ],
+        'mysql_testing' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_HOST', 'localhost'),
+            'database'  => 'gaslight_testing',
+            'username'  => env('DB_USERNAME', 'forge'),
+            'password'  => env('DB_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
 
 
 //        'mysql' => [

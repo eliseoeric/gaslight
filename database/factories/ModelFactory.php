@@ -23,7 +23,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Card::class, function (Faker\Generator $faker) use( $factory ) {
     return [
-        'title' => $faker->text,
+        'title' => $faker->sentence,
         'url' => $faker->url,
     ];
 });

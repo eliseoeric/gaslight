@@ -1,32 +1,26 @@
 <?php
 
-class TestCase extends Illuminate\Foundation\Testing\TestCase
-{
-    /**
-     * The base URL to use while testing the application.
-     *
-     * @var string
-     */
-    protected $baseUrl = 'http://localhost';
+use App\Tag;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-    public function setUp()
-    {
+class TagTest extends TestCase
+{
+    use DatabaseTransactions;
+
+    public function setUp() {
         parent::setUp();
         Artisan::call('migrate');
-        Artisan::call('db:seed');
     }
 
-    /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
-     */
-    public function createApplication()
+    /** @test */
+    public function a_tag_has_a_name()
     {
-        $app = require __DIR__.'/../bootstrap/app.php';
+        $tag = new Tag(['name' => 'Web Design']);
 
-        $app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
-
-        return $app;
+        $this->assertEquals('Web Design', $tag->name);
     }
+
+
 }
